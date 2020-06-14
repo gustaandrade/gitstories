@@ -6,6 +6,7 @@ export interface AppProps {
 }
 
 export interface Profile {
+  id: string;
   login: string;
   url: string;
   name: string;
@@ -21,5 +22,29 @@ export interface Profile {
 }
 
 export interface Repository {
+  id: string;
   owner: Profile;
+  languages: Language[];
+  name: string;
+  fullName: string;
+  url: string;
+  description: string;
+  fork: boolean;
+  mainLanguage: string;
+  stargazers: number;
+  watchers: number;
+  forks: number;
+  license: License;
+  defaultBranch: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Language {
+  name: string;
+  percentage: number;
+}
+
+export interface License {
+  name: string;
 }

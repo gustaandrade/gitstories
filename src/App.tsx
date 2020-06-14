@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import Routes from "./routes";
 
-import { LightTheme, DarkTheme } from "./themes";
-
 import { changeTheme } from "./stores/actions";
 import { StoreActions } from "./stores/actions/types";
 import { StoreState } from "./stores/reducers/types";
 import { Theme } from "./themes/types";
+import { AppProps } from "./types";
 
 import "./App.css";
 
-function App() {
-  const [initialTheme, setInitialTheme] = useState(DarkTheme);
-
-  function changeTheme() {
-    setInitialTheme(initialTheme === LightTheme ? DarkTheme : LightTheme);
-  }
-
+function App(props: AppProps) {
   return (
-    <ThemeProvider theme={initialTheme}>
-      <Routes theme={initialTheme} changeTheme={changeTheme} />
+    <ThemeProvider theme={props.theme}>
+      <Routes />
     </ThemeProvider>
   );
 }

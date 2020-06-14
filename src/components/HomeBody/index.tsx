@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 
 import LogoWhite from "../../assets/logo-white.png";
@@ -15,8 +16,11 @@ import {
   Button
 } from "./styles";
 
+import { changeTheme } from "../../stores/actions";
+import { StoreActions } from "../../stores/actions/types";
+import { StoreState } from "../../stores/reducers/types";
+import { ThemeEnum, Theme } from "../../themes/types";
 import { HomeBodyProps } from "./types";
-import { ThemeEnum } from "../../themes/types";
 
 const HomeBody: React.FC<HomeBodyProps> = props => {
   const [name, setName] = useState("");
@@ -54,4 +58,12 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
   );
 };
 
-export default HomeBody;
+const mapStateToProps = (state: StoreState) => ({
+  theme: state.theme
+});
+
+const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({
+  changeTheme: (theme: Theme) => dispatch(changeTheme(theme))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeBody);

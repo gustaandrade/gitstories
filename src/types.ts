@@ -12,7 +12,7 @@ export interface Profile {
   name: string;
   blog: string;
   location: string;
-  email: string;
+  email: string | null;
   bio: string;
   publicRepos: number;
   publicGists: number;
@@ -24,7 +24,7 @@ export interface Profile {
 export interface Repository {
   id: string;
   owner: Profile;
-  languages: Language[];
+  languages?: Language[];
   name: string;
   fullName: string;
   url: string;
@@ -34,17 +34,13 @@ export interface Repository {
   stargazers: number;
   watchers: number;
   forks: number;
-  license: License;
   defaultBranch: string;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface Language {
+  id: string;
   name: string;
   percentage: number;
-}
-
-export interface License {
-  name: string;
 }

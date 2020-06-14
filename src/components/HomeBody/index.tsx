@@ -16,23 +16,80 @@ import {
   Button
 } from "./styles";
 
-import { changeTheme } from "../../stores/actions";
+import {
+  saveRepositoriesSearch,
+  saveProfileSearch
+} from "../../stores/actions";
 import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
-import { ThemeEnum, Theme } from "../../themes/types";
+import { ThemeEnum } from "../../themes/types";
 import { HomeBodyProps } from "./types";
+import { Repository, Profile } from "../../types";
 
 const HomeBody: React.FC<HomeBodyProps> = props => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [profile, setProfile] = useState<Profile>();
+  const [repo, setRepo] = useState<Repository>();
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+    setUsername(e.target.value);
   };
 
   const onProfileSearch = () => {
-    fetch(`https://api.github.com/users/${name}/repos`)
+    fetch(`https://api.github.com/users/${username}`)
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => saveProfile(data));
+
+    fetch(`https://api.github.com/users/${username}/repos`)
+      .then(res => res.json())
+      .then(data => saveRepositories(data));
+  };
+
+  const saveProfile = (data: any) => {
+    setProfile({
+      id: data.id,
+      login: data.login,
+      url: data.html_url,
+      name: data.name,
+      blog: data.blog,
+      location: data.location,
+      email: data.email,
+      bio: data.bio,
+      publicRepos: data.public_repos,
+      publicGists: data.public_gists,
+      followers: data.followers,
+      following: data.following,
+      createdAt: data.created_at
+    });
+
+    props.saveProfileSearch(profile!);
+  };
+
+  const saveRepositories = (data: any) => {
+    const repos: Repository[] = [];
+
+    data.forEach((dt: any) => {
+      setRepo({
+        id: dt.id,
+        owner: profile!,
+        name: dt.name,
+        fullName: dt.full_name,
+        url: dt.html_url,
+        description: dt.description,
+        fork: dt.fork,
+        mainLanguage: dt.language,
+        stargazers: dt.stargazers_count,
+        watchers: dt.watchers_count,
+        forks: dt.forks_count,
+        defaultBranch: dt.default_branch,
+        createdAt: dt.created_at,
+        updatedAt: dt.updated_at
+      });
+
+      repos.push(repo!);
+    });
+
+    props.saveRepositoriesSearch(repos);
   };
 
   return (
@@ -63,7 +120,9 @@ const mapStateToProps = (state: StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({
-  changeTheme: (theme: Theme) => dispatch(changeTheme(theme))
+  saveProfileSearch: (profile: Profile) => dispatch(saveProfileSearch(profile)),
+  saveRepositoriesSearch: (repositories: Repository[]) =>
+    dispatch(saveRepositoriesSearch(repositories))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeBody);

@@ -28,25 +28,23 @@ import { Repository, Profile } from "../../types";
 
 const HomeBody: React.FC<HomeBodyProps> = props => {
   const [username, setUsername] = useState<string>("");
-  const [profile, setProfile] = useState<Profile>();
-  const [repo, setRepo] = useState<Repository>();
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
-  const onProfileSearch = () => {
-    fetch(`https://api.github.com/users/${username}`)
+  const onProfileSearch = async () => {
+    await fetch(`https://api.github.com/users/${username}`)
       .then(res => res.json())
       .then(data => saveProfile(data));
 
-    fetch(`https://api.github.com/users/${username}/repos`)
+    await fetch(`https://api.github.com/users/${username}/repos`)
       .then(res => res.json())
       .then(data => saveRepositories(data));
   };
 
   const saveProfile = (data: any) => {
-    setProfile({
+    let user: Profile = {
       id: data.id,
       login: data.login,
       url: data.html_url,
@@ -60,18 +58,18 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
       followers: data.followers,
       following: data.following,
       createdAt: data.created_at
-    });
+    };
 
-    props.saveProfileSearch(profile!);
+    props.saveProfileSearch(user);
   };
 
   const saveRepositories = (data: any) => {
     const repos: Repository[] = [];
 
     data.forEach((dt: any) => {
-      setRepo({
+      let repo: Repository = {
         id: dt.id,
-        owner: profile!,
+        owner: props.profile,
         name: dt.name,
         fullName: dt.full_name,
         url: dt.html_url,
@@ -84,12 +82,14 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
         defaultBranch: dt.default_branch,
         createdAt: dt.created_at,
         updatedAt: dt.updated_at
-      });
+      };
 
-      repos.push(repo!);
+      repos.push(repo);
     });
 
     props.saveRepositoriesSearch(repos);
+
+    console.log(props.profile);
   };
 
   return (
@@ -116,7 +116,8 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  theme: state.theme
+  theme: state.theme,
+  profile: state.profile!
 });
 
 const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({

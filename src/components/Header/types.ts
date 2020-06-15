@@ -1,7 +1,6 @@
 import { Theme } from "../../themes/types";
 
 export interface HeaderProps {
-  withLogo: boolean;
+  withTitle: boolean;
   theme: Theme;
-  changeTheme: () => void;
 }

@@ -1,21 +1,15 @@
 import React from "react";
 
 import Header from "../../components/Header";
-import HomeBody from "../../components/HomeBody";
+import MainInput from "../../components/MainInput";
 
 import { Container } from "./styles";
 
-import { HomeProps } from "./types";
-
-const Home: React.FC<HomeProps> = props => {
+const Home: React.FC = () => {
   return (
     <Container>
-      <Header
-        withLogo={false}
-        theme={props.theme}
-        changeTheme={props.changeTheme}
-      />
-      <HomeBody theme={props.theme} changeTheme={props.changeTheme} />
+      <Header withTitle={false} />
+      <MainInput />
     </Container>
   );
 };

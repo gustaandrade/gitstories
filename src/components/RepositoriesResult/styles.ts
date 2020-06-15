@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
 
   width: 100%;
-  height: 100vh;
+
+  padding: 20px;
 `;

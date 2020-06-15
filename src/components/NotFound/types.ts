@@ -1,6 +1,5 @@
 import { Theme } from "../../themes/types";
 
-export interface SearchProps {
+export interface NotFoundProps {
   theme: Theme;
-  changeTheme: () => void;
 }

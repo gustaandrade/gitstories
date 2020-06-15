@@ -1,6 +1,5 @@
 import { Theme } from "../../themes/types";
 
-export interface HomeBodyProps {
+export interface LoadingProps {
   theme: Theme;
-  changeTheme: () => void;
 }

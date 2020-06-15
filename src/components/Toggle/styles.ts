@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   background: ${props => props.theme.background};
-  border: 2px solid ${props => props.theme.text};
+  border: 2px solid ${props => props.theme.paragraph};
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -13,6 +13,7 @@ export const Container = styled.button`
   padding: 0.5rem;
   width: 5rem;
   height: 3rem;
+  outline: none;
 
   transition: all 0.25s linear;
 

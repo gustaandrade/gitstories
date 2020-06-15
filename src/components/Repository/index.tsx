@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { FaStar } from "react-icons/fa";
 import { GoRepoForked, GoEye } from "react-icons/go";
+import { IoMdGitBranch } from "react-icons/io";
+import { BsClock, BsClockHistory } from "react-icons/bs";
+import { RiGitRepositoryLine } from "react-icons/ri";
 
 import {
   Container,
@@ -57,17 +60,42 @@ const Repository: React.FC<RepositoryProps> = props => {
           </Row>
 
           <Row>
-            <Paragraph>
-              {props.repository.mainLanguage
-                ? props.repository.mainLanguage
-                : "Unknown"}
-            </Paragraph>
-            <Paragraph>{props.repository.defaultBranch}</Paragraph>
+            <Icon>
+              <RiGitRepositoryLine size="20" color={props.theme.icon} />
+              <Paragraph>
+                Language:{" "}
+                {props.repository.mainLanguage
+                  ? props.repository.mainLanguage
+                  : "Unknown"}
+              </Paragraph>
+            </Icon>
+
+            <Icon>
+              <IoMdGitBranch size="20" color={props.theme.icon} />
+              <Paragraph>Branch: {props.repository.defaultBranch}</Paragraph>
+            </Icon>
           </Row>
 
           <Row>
-            <Paragraph>{props.repository.createdAt}</Paragraph>
-            <Paragraph>{props.repository.updatedAt}</Paragraph>
+            <Icon>
+              <BsClock size="20" color={props.theme.icon} />
+              <Paragraph>
+                Created on{" "}
+                {new Date(props.repository.createdAt).toLocaleDateString(
+                  "en-US"
+                )}
+              </Paragraph>
+            </Icon>
+
+            <Icon>
+              <BsClockHistory size="20" color={props.theme.icon} />
+              <Paragraph>
+                Last updated on{" "}
+                {new Date(props.repository.updatedAt).toLocaleDateString(
+                  "en-US"
+                )}
+              </Paragraph>
+            </Icon>
           </Row>
         </>
       )}

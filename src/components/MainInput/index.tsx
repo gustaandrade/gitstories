@@ -31,6 +31,8 @@ const MainInput: React.FC<MainInputProps> = props => {
   const [username, setUsername] = useState<string>("");
 
   function onProfileSearch() {
+    if (username === "") return;
+
     props.setLoading();
     props.loadProfileSearch(username);
     props.loadRepositoriesSearch(username);
@@ -55,9 +57,14 @@ const MainInput: React.FC<MainInputProps> = props => {
       <InputArea>
         <Input type="input" onChange={e => onInputChange(e)} />
 
-        <Link to="/search">
+        <Link
+          to="/search"
+          onClick={e => {
+            if (username === "") e.preventDefault();
+          }}
+        >
           <Button onClick={() => onProfileSearch()}>
-            <FaSearch size="18" />
+            <FaSearch size="18" color={props.theme.icon} />
           </Button>
         </Link>
       </InputArea>
@@ -67,7 +74,7 @@ const MainInput: React.FC<MainInputProps> = props => {
 
 const mapStateToProps = (state: StoreState) => ({
   theme: state.theme,
-  profile: state.profile!,
+  profile: state.profile,
   repositories: state.repositories,
   loading: state.loading
 });

@@ -63,11 +63,3 @@ export const Paragraph = styled.p`
 
   padding: 0 5px;
 `;
-
-export const Text = styled.span`
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 10pt;
-
-  padding: 0 5px;
-`;

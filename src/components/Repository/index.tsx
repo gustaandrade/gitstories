@@ -13,11 +13,9 @@ import {
   IconArea,
   Icon,
   Title,
-  Paragraph,
-  Text
+  Paragraph
 } from "./styles";
 
-import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
 import { RepositoryProps } from "./types";
 
@@ -107,6 +105,6 @@ const mapStateToProps = (state: StoreState) => ({
   theme: state.theme
 });
 
-const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Repository);

@@ -1,26 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import Repository from "../Repository";
 
 import { Container } from "./styles";
 
-import {
-  loadProfileSearch,
-  loadRepositoriesSearch,
-  setLoading
-} from "../../stores/actions";
-import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
-import { ProfileProps } from "./types";
+import { RepositoriesResultProps } from "./types";
 
-const RepositoriesResult: React.FC<ProfileProps> = props => {
-  useEffect(() => {
-    props.setLoading();
-    props.loadProfileSearch("gustaandrade");
-    props.loadRepositoriesSearch("gustaandrade");
-  });
-
+const RepositoriesResult: React.FC<RepositoriesResultProps> = props => {
   return (
     <Container>
       {props.repositories &&
@@ -32,17 +20,9 @@ const RepositoriesResult: React.FC<ProfileProps> = props => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  theme: state.theme,
-  profile: state.profile!,
-  repositories: state.repositories,
-  loading: state.loading
+  repositories: state.repositories
 });
 
-const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({
-  loadProfileSearch: (user: string) => dispatch(loadProfileSearch(user)),
-  loadRepositoriesSearch: (user: string) =>
-    dispatch(loadRepositoriesSearch(user)),
-  setLoading: () => dispatch(setLoading())
-});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesResult);

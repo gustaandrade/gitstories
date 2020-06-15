@@ -18,6 +18,13 @@ export const IconArea = styled.div`
   align-items: center;
 
   padding-left: 30px;
+
+  a {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+  }
 `;
 
 export const MenuArea = styled.div`

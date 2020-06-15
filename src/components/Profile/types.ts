@@ -3,7 +3,7 @@ import { Profile, Repository } from "../../types";
 
 export interface ProfileProps {
   theme: Theme;
-  profile: Profile;
+  profile: Profile | null;
   repositories: Repository[];
   loading: boolean;
 

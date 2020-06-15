@@ -1,6 +1,6 @@
-import { Theme } from "../../themes/types";
+import { Profile } from "../../types";
 
 export interface SearchResultProps {
-  theme: Theme;
+  profile: Profile | null;
   loading: boolean;
 }

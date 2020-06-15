@@ -4,9 +4,7 @@ const ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
 
 const fetchOptions: RequestInit = {
   method: "GET",
-  headers: {
-    Authorization: ACCESS_TOKEN!
-  },
+  headers: ACCESS_TOKEN ? { Authorization: ACCESS_TOKEN } : new Headers(),
   mode: "cors",
   cache: "default"
 };

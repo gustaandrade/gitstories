@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   FaGithubAlt,
@@ -33,12 +33,6 @@ import { StoreState } from "../../stores/reducers/types";
 import { ProfileProps } from "./types";
 
 const Profile: React.FC<ProfileProps> = props => {
-  useEffect(() => {
-    props.setLoading();
-    props.loadProfileSearch("gustaandrade");
-    props.loadRepositoriesSearch("gustaandrade");
-  });
-
   return (
     <Container>
       {props.profile && (
@@ -134,7 +128,7 @@ const Profile: React.FC<ProfileProps> = props => {
 
 const mapStateToProps = (state: StoreState) => ({
   theme: state.theme,
-  profile: state.profile!,
+  profile: state.profile,
   repositories: state.repositories,
   loading: state.loading
 });

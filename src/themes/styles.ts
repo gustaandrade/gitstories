@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -7,10 +7,4 @@ export const Container = styled.div`
   overflow-x: hidden;
 
   background-color: ${props => props.theme.background};
-`;
-
-export const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${(props: any) => props.theme.background};
-  }
 `;

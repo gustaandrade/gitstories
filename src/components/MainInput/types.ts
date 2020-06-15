@@ -3,7 +3,7 @@ import { Repository, Profile } from "../../types";
 
 export interface MainInputProps {
   theme: Theme;
-  profile: Profile;
+  profile: Profile | null;
   repositories: Repository[];
   loading: boolean;
 

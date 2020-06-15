@@ -58,17 +58,23 @@ export const Input = styled.input`
   font-size: 16pt;
   text-align: center;
 
+  border: 2px solid ${props => props.theme.paragraph};
   border-radius: 25px;
 
   padding: 0 20px;
   margin: 50px 0;
+
+  outline: none;
 `;
 
 export const Button = styled.button`
   width: 45px;
   height: 45px;
 
+  border: 2px solid ${props => props.theme.paragraph};
   border-radius: 50%;
 
   margin: 0 20px;
+
+  outline: none;
 `;

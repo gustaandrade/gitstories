@@ -50,7 +50,7 @@ const MainInput: React.FC<MainInputProps> = props => {
         <Title>gitstories</Title>
       </LogoArea>
 
-      <Subtitle>gitstories</Subtitle>
+      <Subtitle>Input a Github username to see your gitstories</Subtitle>
 
       <InputArea>
         <Input type="input" onChange={e => onInputChange(e)} />

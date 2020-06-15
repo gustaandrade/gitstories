@@ -14,14 +14,14 @@ import {
   Container,
   FixedArea,
   InfoArea,
-  ProfileItem,
-  ItemIcon,
-  ItemContent,
   Image,
   Title,
   Subtitle,
-  Paragraph
+  Paragraph,
+  Text
 } from "./styles";
+
+import ProfileItem from "../ProfileItem";
 
 import {
   loadProfileSearch,
@@ -46,97 +46,76 @@ const Profile: React.FC<ProfileProps> = props => {
           <FixedArea>
             <Image src={props.profile.avatar} />
             <Title>{props.profile.name}</Title>
-            <Title>@{props.profile.login}</Title>
+            <Subtitle>@{props.profile.login}</Subtitle>
             <Paragraph>{props.profile.bio}</Paragraph>
           </FixedArea>
 
           <InfoArea>
-            <ProfileItem>
-              <ItemIcon>
-                <FaGithubAlt size="20" color={props.theme.icon} />
-              </ItemIcon>
-
-              <ItemContent>
+            <ProfileItem
+              profileItem={props.profile.url}
+              icon={<FaGithubAlt size="20" color={props.theme.icon} />}
+              content={
                 <a href={props.profile.url}>
-                  <Subtitle>{props.profile.url}</Subtitle>
+                  <Text>{props.profile.url}</Text>
                 </a>
-              </ItemContent>
-            </ProfileItem>
+              }
+            />
 
-            <ProfileItem>
-              <ItemIcon>
-                <FaGlobe size="20" color={props.theme.icon} />
-              </ItemIcon>
-
-              <ItemContent>
+            <ProfileItem
+              profileItem={props.profile.blog}
+              icon={<FaGlobe size="20" color={props.theme.icon} />}
+              content={
                 <a href={props.profile.blog}>
-                  <Subtitle>{props.profile.blog}</Subtitle>
+                  <Text>{props.profile.blog}</Text>
                 </a>
-              </ItemContent>
-            </ProfileItem>
+              }
+            />
 
-            <ProfileItem>
-              <ItemIcon>
-                <FaMapMarkerAlt size="20" color={props.theme.icon} />
-              </ItemIcon>
+            <ProfileItem
+              profileItem={props.profile.email}
+              icon={<FaEnvelope size="20" color={props.theme.icon} />}
+              content={<Text>{props.profile.email}</Text>}
+            />
+            <ProfileItem
+              profileItem={props.profile.location}
+              icon={<FaMapMarkerAlt size="20" color={props.theme.icon} />}
+              content={<Text>{props.profile.location}</Text>}
+            />
 
-              <ItemContent>
-                <Subtitle>{props.profile.location}</Subtitle>
-              </ItemContent>
-            </ProfileItem>
+            <ProfileItem
+              profileItem={props.profile.publicRepos}
+              icon={<GoRepo size="20" color={props.theme.icon} />}
+              content={
+                <Text>
+                  {props.profile.publicRepos} public repos and{" "}
+                  {props.profile.publicGists} public gists
+                </Text>
+              }
+            />
 
-            {props.profile.email && (
-              <ProfileItem>
-                <ItemIcon>
-                  <FaEnvelope size="20" color={props.theme.icon} />
-                </ItemIcon>
-
-                <ItemContent>
-                  <Subtitle>{props.profile.email}</Subtitle>
-                </ItemContent>
-              </ProfileItem>
-            )}
-
-            <ProfileItem>
-              <ItemIcon>
-                <FaUserFriends size="20" color={props.theme.icon} />
-              </ItemIcon>
-
-              <ItemContent>
-                <Subtitle>
+            <ProfileItem
+              profileItem={props.profile.followers}
+              icon={<FaUserFriends size="20" color={props.theme.icon} />}
+              content={
+                <Text>
                   {props.profile.following} following and{" "}
                   {props.profile.followers} followers
-                </Subtitle>
-              </ItemContent>
-            </ProfileItem>
+                </Text>
+              }
+            />
 
-            <ProfileItem>
-              <ItemIcon>
-                <FaRegCalendarCheck size="20" color={props.theme.icon} />
-              </ItemIcon>
-
-              <ItemContent>
-                <Subtitle>
+            <ProfileItem
+              profileItem={props.profile.createdAt}
+              icon={<FaRegCalendarCheck size="20" color={props.theme.icon} />}
+              content={
+                <Text>
                   User since{" "}
                   {new Date(props.profile.createdAt).toLocaleDateString(
                     "en-US"
                   )}
-                </Subtitle>
-              </ItemContent>
-            </ProfileItem>
-
-            <ProfileItem>
-              <ItemIcon>
-                <GoRepo size="20" color={props.theme.icon} />
-              </ItemIcon>
-
-              <ItemContent>
-                <Subtitle>
-                  {props.profile.publicRepos} public repos and{" "}
-                  {props.profile.publicGists} public gists
-                </Subtitle>
-              </ItemContent>
-            </ProfileItem>
+                </Text>
+              }
+            />
           </InfoArea>
         </>
       )}

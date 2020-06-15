@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { Container, Image, Title, Subtitle, Paragraph } from "./styles";
+import Repository from "../Repository";
+
+import { Container } from "./styles";
 
 import {
   loadProfileSearch,
@@ -21,17 +23,10 @@ const RepositoriesResult: React.FC<ProfileProps> = props => {
 
   return (
     <Container>
-      {props.profile && (
-        <>
-          <Image src={props.profile.avatar} />
-          <Title>{props.profile.name}</Title>
-          <Title>@{props.profile.login}</Title>
-          <Paragraph>{props.profile.bio}</Paragraph>
-          <a href={props.profile.url}>
-            <Subtitle>{props.profile.url}</Subtitle>
-          </a>
-        </>
-      )}
+      {props.repositories &&
+        props.repositories
+          .sort((a, b) => b.stargazers - a.stargazers)
+          .map(repo => <Repository repository={repo} key={repo.id} />)}
     </Container>
   );
 };

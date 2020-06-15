@@ -19,6 +19,8 @@ export const FixedArea = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  margin-bottom: 20px;
 `;
 
 export const InfoArea = styled.div`
@@ -39,18 +41,6 @@ export const ProfileItem = styled.div`
   padding: 5px 0;
 `;
 
-export const ItemIcon = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 10%;
-`;
-
-export const ItemContent = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 90%;
-`;
-
 export const Image = styled.img`
   width: 150px;
   height: 150px;
@@ -59,24 +49,37 @@ export const Image = styled.img`
   border-radius: 50%;
 `;
 
-export const Title = styled.p`
+export const Title = styled.span`
   font-family: Montserrat;
   font-weight: 700;
-  font-size: 12pt;
+  font-size: 16pt;
   color: ${props => props.theme.paragraph};
+
+  padding-top: 20px;
 `;
 
 export const Subtitle = styled.span`
   font-family: Montserrat;
   font-weight: 500;
-  font-size: 10pt;
-  color: ${props => props.theme.paragraph};
+  font-size: 12pt;
+  color: ${props => props.theme.icon};
+
+  padding-top: 10px;
 `;
 
-export const Paragraph = styled.p`
+export const Paragraph = styled.span`
   font-family: Montserrat;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 10pt;
   text-align: center;
+  color: ${props => props.theme.paragraph};
+
+  padding-top: 20px;
+`;
+
+export const Text = styled.span`
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 10pt;
   color: ${props => props.theme.paragraph};
 `;

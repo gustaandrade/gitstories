@@ -5,10 +5,10 @@ export const Container = styled.a`
   flex-direction: column;
   justify-content: space-between;
 
-  width: 42%;
+  width: 75%;
   min-height: 100px;
 
-  border: 3px solid ${props => props.theme.icon};
+  border: 3px solid ${props => props.theme.paragraph};
   border-radius: 15px;
 
   margin: 10px 0;
@@ -18,11 +18,16 @@ export const Container = styled.a`
   text-decoration: none;
 
   color: ${props => props.theme.paragraph};
+
+  @media only screen and (min-width: 1012px) {
+    width: 42%;
+  }
 `;
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
 `;
 
@@ -31,14 +36,22 @@ export const TitleArea = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 70%;
+  width: 100%;
+
+  @media only screen and (min-width: 1012px) {
+    width: 70%;
+  }
 `;
 
 export const IconArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 30%;
+  width: 100%;
+
+  @media only screen and (min-width: 1012px) {
+    width: 30%;
+  }
 `;
 
 export const Icon = styled.div`

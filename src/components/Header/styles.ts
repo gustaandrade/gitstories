@@ -43,8 +43,13 @@ export const LogoImg = styled.img`
 export const Title = styled.span`
   font-family: Montserrat;
   font-weight: 700;
-  font-size: 18pt;
+  font-size: 12pt;
   color: ${props => props.theme.title};
 
-  padding-left: 10px;
+  padding-left: 5px;
+
+  @media only screen and (min-width: 544px) {
+    font-size: 18pt;
+    padding-left: 10px;
+  }
 `;

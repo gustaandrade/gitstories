@@ -5,7 +5,6 @@ import { FaUserSlash, FaHome } from "react-icons/fa";
 
 import { Container, Text, Button } from "./styles";
 
-import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
 import { NotFoundProps } from "./types";
 

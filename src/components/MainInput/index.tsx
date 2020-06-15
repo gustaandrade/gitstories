@@ -58,7 +58,10 @@ const MainInput: React.FC<MainInputProps> = props => {
         <Input type="input" onChange={e => onInputChange(e)} />
 
         <Link
-          to="/search"
+          to={{
+            pathname: "/search",
+            search: `?q=${username}`
+          }}
           onClick={e => {
             if (username === "") e.preventDefault();
           }}

@@ -28,11 +28,13 @@ const SearchResult: React.FC<SearchResultProps> = props => {
     }
   }, [window.location.href]);
 
+  console.log(props.profile);
+
   return (
     <Container>
       {props.loading && <Loading />}
-      {!props.loading && props.profile === null && <NotFound />}
-      {!props.loading && props.profile && (
+      {!props.loading && (!props.profile || !props.profile?.id) && <NotFound />}
+      {!props.loading && props.profile?.id && (
         <>
           <Profile />
           <RepositoriesResult />

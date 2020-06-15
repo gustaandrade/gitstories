@@ -1,12 +1,13 @@
 import React from "react";
 
-import { SearchProps } from "./types";
+import Header from "../../components/Header";
+import SearchBody from "../../components/SearchBody";
 
-const Search: React.FC<SearchProps> = props => {
+const Search: React.FC = () => {
   return (
     <div>
-      <p>siuadfhi</p>
-      {/* <SearchBody /> */}
+      <Header withTitle={true} />
+      <SearchBody />
     </div>
   );
 };

@@ -1,11 +1,15 @@
 import React from "react";
 
+import Profile from "../Profile";
+
 import { Container } from "./styles";
 
-import { SearchBodyProps } from "./types";
-
-const Header: React.FC<SearchBodyProps> = props => {
-  return <Container></Container>;
+const SearchBody: React.FC = () => {
+  return (
+    <Container>
+      <Profile />
+    </Container>
+  );
 };
 
-export default Header;
+export default SearchBody;

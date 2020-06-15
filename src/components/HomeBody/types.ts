@@ -4,6 +4,10 @@ import { Repository, Profile } from "../../types";
 export interface HomeBodyProps {
   theme: Theme;
   profile: Profile;
-  saveProfileSearch: (profile: Profile) => void;
-  saveRepositoriesSearch: (repositories: Repository[]) => void;
+  repositories: Repository[];
+  loading: boolean;
+
+  loadProfileSearch: (user: string) => void;
+  loadRepositoriesSearch: (user: string) => void;
+  setLoading: () => void;
 }

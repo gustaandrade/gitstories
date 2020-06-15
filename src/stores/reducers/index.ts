@@ -5,8 +5,10 @@ import { StoreActions, ActionTypes } from "../actions/types";
 
 export const initialState: StoreState = {
   theme: LightTheme,
-  profile: undefined,
-  repositories: undefined
+  profile: null,
+  repositories: [],
+  languages: [],
+  loading: false
 };
 
 const Reducer = (state = initialState, action: StoreActions): StoreState => {
@@ -26,13 +28,20 @@ const Reducer = (state = initialState, action: StoreActions): StoreState => {
     case ActionTypes.SAVE_REPOSITORIES_SEARCH:
       return {
         ...state,
-        repositories: action.repositories
+        repositories: action.repositories,
+        loading: false
       };
 
     case ActionTypes.SAVE_LANGUAGES_SEARCH:
       return {
         ...state,
         languages: action.languages
+      };
+
+    case ActionTypes.SET_LOADING:
+      return {
+        ...state,
+        loading: true
       };
 
     default:

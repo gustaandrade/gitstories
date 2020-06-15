@@ -3,7 +3,8 @@ import { Profile, Repository, Language } from "../../types";
 
 export interface StoreState {
   theme: Theme;
-  profile?: Profile;
-  repositories?: Repository[];
-  languages?: Language[];
+  profile: Profile | null;
+  repositories: Repository[];
+  languages: Language[];
+  loading: boolean;
 }

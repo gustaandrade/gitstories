@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 import LogoWhite from "../../assets/logo-white.png";
@@ -17,79 +18,26 @@ import {
 } from "./styles";
 
 import {
-  saveRepositoriesSearch,
-  saveProfileSearch
+  loadProfileSearch,
+  loadRepositoriesSearch,
+  setLoading
 } from "../../stores/actions";
 import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
 import { ThemeEnum } from "../../themes/types";
 import { HomeBodyProps } from "./types";
-import { Repository, Profile } from "../../types";
 
 const HomeBody: React.FC<HomeBodyProps> = props => {
   const [username, setUsername] = useState<string>("");
 
+  function onProfileSearch() {
+    props.setLoading();
+    props.loadProfileSearch(username);
+    props.loadRepositoriesSearch(username);
+  }
+
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-  };
-
-  const onProfileSearch = async () => {
-    await fetch(`https://api.github.com/users/${username}`)
-      .then(res => res.json())
-      .then(data => saveProfile(data));
-
-    await fetch(`https://api.github.com/users/${username}/repos`)
-      .then(res => res.json())
-      .then(data => saveRepositories(data));
-  };
-
-  const saveProfile = (data: any) => {
-    let user: Profile = {
-      id: data.id,
-      login: data.login,
-      url: data.html_url,
-      name: data.name,
-      blog: data.blog,
-      location: data.location,
-      email: data.email,
-      bio: data.bio,
-      publicRepos: data.public_repos,
-      publicGists: data.public_gists,
-      followers: data.followers,
-      following: data.following,
-      createdAt: data.created_at
-    };
-
-    props.saveProfileSearch(user);
-  };
-
-  const saveRepositories = (data: any) => {
-    const repos: Repository[] = [];
-
-    data.forEach((dt: any) => {
-      let repo: Repository = {
-        id: dt.id,
-        owner: props.profile,
-        name: dt.name,
-        fullName: dt.full_name,
-        url: dt.html_url,
-        description: dt.description,
-        fork: dt.fork,
-        mainLanguage: dt.language,
-        stargazers: dt.stargazers_count,
-        watchers: dt.watchers_count,
-        forks: dt.forks_count,
-        defaultBranch: dt.default_branch,
-        createdAt: dt.created_at,
-        updatedAt: dt.updated_at
-      };
-
-      repos.push(repo);
-    });
-
-    props.saveRepositoriesSearch(repos);
-
-    console.log(props.profile);
   };
 
   return (
@@ -107,9 +55,11 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
       <InputArea>
         <Input type="input" onChange={e => onInputChange(e)} />
 
-        <Button onClick={() => onProfileSearch()}>
-          <FaSearch size="18" />
-        </Button>
+        <Link to="/search">
+          <Button onClick={() => onProfileSearch()}>
+            <FaSearch size="18" />
+          </Button>
+        </Link>
       </InputArea>
     </Container>
   );
@@ -117,13 +67,16 @@ const HomeBody: React.FC<HomeBodyProps> = props => {
 
 const mapStateToProps = (state: StoreState) => ({
   theme: state.theme,
-  profile: state.profile!
+  profile: state.profile!,
+  repositories: state.repositories,
+  loading: state.loading
 });
 
 const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({
-  saveProfileSearch: (profile: Profile) => dispatch(saveProfileSearch(profile)),
-  saveRepositoriesSearch: (repositories: Repository[]) =>
-    dispatch(saveRepositoriesSearch(repositories))
+  loadProfileSearch: (user: string) => dispatch(loadProfileSearch(user)),
+  loadRepositoriesSearch: (user: string) =>
+    dispatch(loadRepositoriesSearch(user)),
+  setLoading: () => dispatch(setLoading())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeBody);

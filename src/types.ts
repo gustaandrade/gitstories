@@ -10,6 +10,7 @@ export interface Profile {
   login: string;
   url: string;
   name: string;
+  avatar: string;
   blog: string;
   location: string;
   email: string | null;

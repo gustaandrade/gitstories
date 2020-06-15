@@ -2,43 +2,35 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 
-  width: 25%;
-  height: 100%;
+  width: 40%;
 
   border: 3px solid ${props => props.theme.icon};
   border-radius: 15px;
 
   padding: 20px;
-  margin: 80px 10px 20px 20px;
 `;
 
 export const FixedArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
-  margin-bottom: 20px;
+  width: 40%;
+
+  margin-right: 20px;
 `;
 
 export const InfoArea = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-`;
-
-export const ProfileItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
 
-  width: 100%;
-
-  padding: 5px 0;
+  width: 60%;
 `;
 
 export const Image = styled.img`
@@ -60,7 +52,7 @@ export const Title = styled.span`
 
 export const Subtitle = styled.span`
   font-family: Montserrat;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 12pt;
   color: ${props => props.theme.icon};
 
@@ -74,7 +66,7 @@ export const Paragraph = styled.span`
   text-align: center;
   color: ${props => props.theme.paragraph};
 
-  padding-top: 20px;
+  padding: 10px 0;
 `;
 
 export const Text = styled.span`

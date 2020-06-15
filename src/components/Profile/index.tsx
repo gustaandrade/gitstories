@@ -47,10 +47,11 @@ const Profile: React.FC<ProfileProps> = props => {
             <Image src={props.profile.avatar} />
             <Title>{props.profile.name}</Title>
             <Subtitle>@{props.profile.login}</Subtitle>
-            <Paragraph>{props.profile.bio}</Paragraph>
           </FixedArea>
 
           <InfoArea>
+            <Paragraph>{props.profile.bio}</Paragraph>
+
             <ProfileItem
               profileItem={props.profile.url}
               icon={<FaGithubAlt size="20" color={props.theme.icon} />}
@@ -72,9 +73,17 @@ const Profile: React.FC<ProfileProps> = props => {
             />
 
             <ProfileItem
-              profileItem={props.profile.email}
+              profileItem={
+                props.profile.email !== null ? props.profile.email : "private"
+              }
               icon={<FaEnvelope size="20" color={props.theme.icon} />}
-              content={<Text>{props.profile.email}</Text>}
+              content={
+                <Text>
+                  {props.profile.email !== null
+                    ? props.profile.email
+                    : "Private"}
+                </Text>
+              }
             />
             <ProfileItem
               profileItem={props.profile.location}

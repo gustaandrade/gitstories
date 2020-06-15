@@ -1,7 +1,7 @@
 import { Theme } from "../../themes/types";
 import { Repository, Profile } from "../../types";
 
-export interface HomeBodyProps {
+export interface MainInputProps {
   theme: Theme;
   profile: Profile;
   repositories: Repository[];

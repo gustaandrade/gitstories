@@ -1,14 +1,16 @@
 import React from "react";
 
+import { Container } from "./styles";
+
 import Header from "../../components/Header";
-import SearchBody from "../../components/SearchBody";
+import SearchResult from "../../components/SearchResult";
 
 const Search: React.FC = () => {
   return (
-    <div>
+    <Container>
       <Header withTitle={true} />
-      <SearchBody />
-    </div>
+      <SearchResult />
+    </Container>
   );
 };
 

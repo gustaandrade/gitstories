@@ -25,9 +25,9 @@ import {
 import { StoreActions } from "../../stores/actions/types";
 import { StoreState } from "../../stores/reducers/types";
 import { ThemeEnum } from "../../themes/types";
-import { HomeBodyProps } from "./types";
+import { MainInputProps } from "./types";
 
-const HomeBody: React.FC<HomeBodyProps> = props => {
+const MainInput: React.FC<MainInputProps> = props => {
   const [username, setUsername] = useState<string>("");
 
   function onProfileSearch() {
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch: (dispatch: StoreActions) => void) => ({
   setLoading: () => dispatch(setLoading())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeBody);
+export default connect(mapStateToProps, mapDispatchToProps)(MainInput);

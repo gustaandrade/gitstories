@@ -10,6 +10,8 @@ export const Container = styled.div`
   height: 100%;
 
   background-color: ${props => props.theme.background};
+
+  transition: all 0.25s linear;
 `;
 
 export const LogoArea = styled.div`

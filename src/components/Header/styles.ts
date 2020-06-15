@@ -8,6 +8,8 @@ export const Container = styled.div`
   height: 80px;
 
   background-color: ${props => props.theme.background};
+
+  transition: all 0.25s linear;
 `;
 
 export const IconArea = styled.div`

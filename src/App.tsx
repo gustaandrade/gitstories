@@ -4,6 +4,8 @@ import { ThemeProvider } from "styled-components";
 
 import Routes from "./routes";
 
+import { Container } from "./themes/styles";
+
 import { changeTheme } from "./stores/actions";
 import { StoreActions } from "./stores/actions/types";
 import { StoreState } from "./stores/reducers/types";
@@ -15,7 +17,9 @@ import "./App.css";
 function App(props: AppProps) {
   return (
     <ThemeProvider theme={props.theme}>
-      <Routes />
+      <Container>
+        <Routes />
+      </Container>
     </ThemeProvider>
   );
 }
